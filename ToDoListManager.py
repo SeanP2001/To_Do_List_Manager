@@ -1,11 +1,28 @@
 from ToDoList import ToDoList
+import pickle
 
 displayWidth = 30
 toDoLists = []
 
+saveFile = "lists.dat"
+
 def printAllLists():
     for x in range(len(toDoLists)):
         toDoLists[x].printList(displayWidth)
+
+def loadLists():
+    try:
+        with open(saveFile, "rb") as f:
+            toDoLists = pickle.load(f)
+    except:
+        toDoLists = []
+    return toDoLists 
+
+def saveLists(data):
+    with open(saveFile, "wb") as f:
+        pickle.dump(data, f)
+
+toDoLists = loadLists()                                                         # Load any saved lists
 
 while(1): 
     printAllLists()                                                             # Print all to do lists
@@ -60,25 +77,10 @@ while(1):
             else:                                                                               # Any other input is not valid
                  print("Please enter a valid input")
             
-            
-    else:
+    elif (userInput == "3"):                                                        # When the user selects "Save and Exit"
+        saveLists(toDoLists)                                                        # Save the lists
+        quit()                                                                      # and quit the program
+
+
+    else:                                                                           # Any other input is not valid
         print("Please enter a valid input")
-
-
-
-"""
-list1 = ToDoList("ICE-1001")
-list2 = ToDoList("ICE-2003")
-
-list1.addToList("Complete Assignment 1")
-list1.addToList("Setup Software")
-list1.addToList("Email Lecturer")
-
-list2.addToList("Meeting at 9AM")
-list2.addToList("Read Resources")
-list2.addToList("Finish Write-up")
-
-list1.printList(30)
-list2.printList(30)
-
-"""
