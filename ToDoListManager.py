@@ -29,6 +29,40 @@ while(1):
 
         print(newListName, "has been created")
 
+    elif (userInput == "2"):
+        for x in range(len(toDoLists)):
+            print(x, ") ", toDoLists[x].name)
+            
+        listSelection = input("Please Select: ")
+
+        while(1):
+            toDoLists[int(listSelection)].printList(displayWidth)
+
+            print("""
+
+            1) Create a New Task
+            2) Tick off a Task
+            3) Return to all tasks
+
+            """)
+
+            listAction = input("Please Select: ")
+
+            if (listAction == "1"):
+                newTaskName = input("What would you like to name you new task? ")
+
+                toDoLists[int(listSelection)].addToList(newTaskName)
+
+                print(newTaskName, "has been added to ", toDoLists[int(listSelection)].name)
+
+            #elif (listAction == "2"):
+
+            #elif (listAction == "3"): 
+
+            else:
+                 print("Please enter a valid input")
+            
+            
     else:
         print("Please enter a valid input")
 
