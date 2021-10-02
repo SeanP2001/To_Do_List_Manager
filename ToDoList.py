@@ -30,6 +30,24 @@ class ToDoList:
                 print()
             
         print()
+
+    def printCompletedList(self, width):
+        print("-" * width)
+        print((" " * int((width - len(self.name)) / 2)), self.name)
+        print("-" * width)
+
+        for x in range(len(self.completedList)):
+            if self.completedList[x].important == True:    
+                print("* " , self.completedList[x].name, end="")
+            else:    
+                print("- " , self.completedList[x].name, end="")
+
+            if self.completedList[x].dueDateIsSet():
+                print("  (", self.completedList[x].dueDay, "/", self.completedList[x].dueMonth, ")")
+            else:
+                print()
+            
+        print()
         
 
 
