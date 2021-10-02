@@ -1,15 +1,17 @@
+from Task import Task
+
 class ToDoList:
     def __init__(self, name):
         self.name = name
         self.list = []
         self.completedList = []
 
-    def addToList(self, item):
-        self.list.append(item)
+    def addToList(self, taskName):
+        self.list.append(Task(taskName))
 
-    def tickOffTask(self, item):
-        self.completedList.append(self.list[int(item)])
-        del self.list[int(item)]
+    def tickOffTask(self, itemNo):
+        self.completedList.append(self.list[int(itemNo)])
+        del self.list[int(itemNo)]
 
     def printList(self, width):
         print("-" * width)
@@ -17,7 +19,15 @@ class ToDoList:
         print("-" * width)
 
         for x in range(len(self.list)):
-            print("- " , self.list[x])
+            if self.list[x].important == True:    
+                print("* " , self.list[x].name, end="")
+            else:    
+                print("- " , self.list[x].name, end="")
+
+            if self.list[x].dueDateIsSet():
+                print("  (", self.list[x].dueDay, "/", self.list[x].dueMonth, ")")
+            else:
+                print()
             
         print()
         
