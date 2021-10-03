@@ -1,57 +1,71 @@
 # -------------------------------------------------------------------------------------------------------------------------------------------------
-# To Do List Manager
+# To-Do List Manager
 # Sean Price
-# V0.7
+# V0.8
 # -------------------------------------------------------------------------------------------------------------------------------------------------
 from ToDoList import ToDoList
 import pickle
 
 # --------------------------------------------------------------- V A R I A B L E S ---------------------------------------------------------------
+
+projectName = "To-Do List Manager"                   # The name of the project
+author = "By Sean Price"                             # The author of the project
+version = "V0.8"                                     # The version number of the project
+
 displayWidth = 40                                    # The char width that lists will be printed at
 toDoLists = []                                       # The list where to do list objects are stored
 
 saveFile = "lists.dat"                               # The file where the to do lists are saved
 
 # --------------------------------------------------------------- F U N C T I O N S ---------------------------------------------------------------
-def loadLists():                                                   # load the lists stored in the file
-    try:                                                           # try to open the file (Read) 
+def printProjectHeader():
+    print("-" * displayWidth)                                                # prints a line across the set width
+    print((" " * int((displayWidth - len(projectName)) / 2)), projectName)   # prints name of the project in the centre
+    print((" " * int((displayWidth - len(author)) / 2)), author)             # prints the author of the project in the centre
+    print((" " * int((displayWidth - len(version)) / 2)), version)           # prints the version of the project in the centre
+    print("-" * displayWidth)                                                # prints a line across the set width
+
+def loadLists():                                                             # load the lists stored in the file
+    try:                                                                     # try to open the file (Read) 
         with open(saveFile, "rb") as f: 
-            toDoLists = pickle.load(f)                             # and load the to do lists into the "toDoLists" list 
-    except:                                                        # If that fails
-        toDoLists = []                                             # continue with no to do lists
+            toDoLists = pickle.load(f)                                       # and load the to do lists into the "toDoLists" list 
+    except:                                                                  # If that fails
+        toDoLists = []                                                       # continue with no to do lists
     return toDoLists 
 
-def saveLists(data):                                               # save the to do lists to the file
-    with open(saveFile, "wb") as f:                                # open the file (Write)
-        pickle.dump(data, f)                                       # and dump the to do lists into the file
+def saveLists(data):                                                         # save the to do lists to the file
+    with open(saveFile, "wb") as f:                                          # open the file (Write)
+        pickle.dump(data, f)                                                 # and dump the to do lists into the file
 
-def printAllLists():                                               # Prints all lists
-    for x in range(len(toDoLists)):                                # Go through all to do lists
-        toDoLists[x].printList(displayWidth)                       # and for each one, print the list
+def printAllLists():                                                         # Prints all lists
+    for x in range(len(toDoLists)):                                          # Go through all to do lists
+        toDoLists[x].printList(displayWidth)                                 # and for each one, print the list
 
-def printAllCompleteLists():                                       # Prints all of the lists' completed tasks
-    for x in range(len(toDoLists)):                                # Go through all lists
-        toDoLists[x].printCompletedList(displayWidth)              # and print out all of it's completed tasks
+def printAllCompleteLists():                                                 # Prints all of the lists' completed tasks
+    for x in range(len(toDoLists)):                                          # Go through all lists
+        toDoLists[x].printCompletedList(displayWidth)                        # and print out all of it's completed tasks
 
-def printListNames():                                              # Print the names of all of the lists e.g. "1) Work"
-    for x in range(len(toDoLists)):                                # Go through all lists
-        print(x, ") ", toDoLists[x].name)                          # and print out the list number followed by the name 
+def printListNames():                                                        # Print the names of all of the lists e.g. "1) Work"
+    for x in range(len(toDoLists)):                                          # Go through all lists
+        print(x, ") ", toDoLists[x].name)                                    # and print out the list number followed by the name 
 
-def printTaskNames(selectedList):                                  # Print the names of all of the tasks in a selected list e.g. "1) Follow up Emails"
-    for x in range(len(toDoLists[int(selectedList)].list)):        # Go through all of the tasks in the selected list
-        print(x, ") ", toDoLists[int(selectedList)].list[x].name)  # and print out the task number followed by the name
+def printTaskNames(selectedList):                                            # Print the names of all of the tasks in a selected list e.g. "1) Follow up Emails"
+    for x in range(len(toDoLists[int(selectedList)].list)):                  # Go through all of the tasks in the selected list
+        print(x, ") ", toDoLists[int(selectedList)].list[x].name)            # and print out the task number followed by the name
 
-def selectList():                                                  # Print the list names and return the number of the list selected
-    printListNames()                                               # Print the names of all of the lists e.g. "1) Work"       
-    selectedList = input("Please Select: ")                        # and ask which one they want to select
-    return selectedList                                            # return the selected list
+def selectList():                                                            # Print the list names and return the number of the list selected
+    printListNames()                                                         # Print the names of all of the lists e.g. "1) Work"       
+    selectedList = input("Please Select: ")                                  # and ask which one they want to select
+    return selectedList                                                      # return the selected list
 
 # -------------------------------------------------------------------- M A I N --------------------------------------------------------------------
-toDoLists = loadLists()                                            # Load any saved lists
+toDoLists = loadLists()                                                      # Load any saved lists
+
+printProjectHeader()                                                         # print the project header (project name, author and version)
 
 while(1): 
-    printAllLists()                                                # Print all to do lists
-                                                                   # Print Main Menu
+    printAllLists()                                                          # Print all to do lists
+                                                                             # Print Main Menu
     print("""                                                                     
     1) Create a New List
     2) Delete a list
@@ -63,7 +77,7 @@ while(1):
     8) Save and Exit
     """)
 
-    userInput = input("Please Select (1-8): ")                     # Ask for user selection
+    userInput = input("Please Select (1-8): ")                               # Ask for user selection
 
 # ------------------------------------------------------ C R E A T E   A   N E W   L I S T ------------------------------------------------------
     if (userInput == "1"):                                                                  # When the user selects "Create a New List"
