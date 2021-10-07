@@ -13,7 +13,7 @@ class Task:
         self.dueMonth = month                              # and due month 
 
     def dueDateIsSet(self):                                # Checks if the due date is set
-        if (int(self.dueDay) & int(self.dueMonth)) != 0:   # If both the due day and due month are set (Not 0)    
+        if (int(self.dueDay) and int(self.dueMonth)) != 0: # If both the due day and due month are set (Not 0)    
             return True                                    # then return that the date is set
         else:                                              # Otherwise
             False                                          # return that it is not set

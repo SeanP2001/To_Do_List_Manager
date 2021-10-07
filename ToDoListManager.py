@@ -1,21 +1,22 @@
 # -------------------------------------------------------------------------------------------------------------------------------------------------
 # To-Do List Manager
 # Sean Price
-# V0.8
+# V0.9
 # -------------------------------------------------------------------------------------------------------------------------------------------------
 from ToDoList import ToDoList
 import pickle
+import os
 
 # --------------------------------------------------------------- V A R I A B L E S ---------------------------------------------------------------
 
 projectName = "To-Do List Manager"                   # The name of the project
 author = "By Sean Price"                             # The author of the project
-version = "V0.8"                                     # The version number of the project
+version = "V0.9"                                     # The version number of the project
 
 displayWidth = 40                                    # The char width that lists will be printed at
 toDoLists = []                                       # The list where to do list objects are stored
 
-saveFile = "lists.dat"                               # The file where the to do lists are saved
+saveFile = os.path.abspath("lists.dat")              # The file where the to do lists are saved
 
 # --------------------------------------------------------------- F U N C T I O N S ---------------------------------------------------------------
 def printProjectHeader():
