@@ -123,10 +123,9 @@ while(1):
 
 # --------------------------------------------------- S H O W   C O M P L E T E D   T A S K S ---------------------------------------------------         
     elif (userInput == "7"):                                                                # When the user selects "Show Completed Tasks"
-        print("\033[1;32;40m Completed Tasks\n")                                            # change terminal text colour to green
+        print("Completed Tasks\n")                                                          # Print title
         printAllCompleteLists()                                                             # print out all of the completed tasks
         input("Press enter to return to viewing the current tasks... ")                     # and day the task is due
-        print("\033[1;37;40m")                                                              # change terminal colour back to white
 
 # ---------------------------------------------------------- S A V E   A N D   E X I T ----------------------------------------------------------         
     elif (userInput == "8"):                                                                # When the user selects "Save and Exit"
